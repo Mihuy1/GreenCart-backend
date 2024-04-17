@@ -14,10 +14,10 @@ Content-Type: application/json
 GET http://localhost:3000/api/v1/foods
 
 ### Get a food by id
-GET http://localhost:3000/api/v1/foods/1
+GET http://localhost:3000/api/v1/foods/2
 
 ### Update a food
-PUT http://localhost:3000/api/v1/foods/1
+PUT http://localhost:3000/api/v1/foods/2
 Content-Type: application/json
 
 {
@@ -30,3 +30,31 @@ Content-Type: application/json
 
 ### Delete a food
 DELETE http://localhost:3000/api/v1/foods/1
+
+
+
+
+### Add a new user
+POST http://localhost:3000/api/v1/users
+Content-Type: application/json
+
+{
+  "username": "Test User2",
+  "email": "test.user@gmail.com",
+  "password": "password",
+  "role": "user"
+}
+
+### List all users
+GET http://localhost:3000/api/v1/users
+
+### Modify a user
+PUT http://localhost:3000/api/v1/users/3
+Content-Type: application/json
+
+{
+  "username": "Test User2",
+  "email": "hey@gmail.com",
+  "password": "password",
+  "role": "user"
+}
