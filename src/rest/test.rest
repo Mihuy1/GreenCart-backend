@@ -1,0 +1,14 @@
+### Add a new food
+POST http://localhost:3000/api/v1/foods
+Content-Type: application/json
+
+{
+  "name": "Test Food",
+  "description": "This is a test food",
+  "price": 10.99,
+  "category": "Test Category",
+  "image": "test.jpg"
+}
+
+### List all foods
+GET http://localhost:3000/api/v1/foods
