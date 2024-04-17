@@ -10,6 +10,7 @@ const findFoodById = async (id) => {
   const [rows] = await promisePool.execute('SELECT * FROM foods WHERE id = ?', [
     id,
   ]);
+  console.log('rows', rows);
   return rows;
 };
 
@@ -29,10 +30,7 @@ const addFood = async (food) => {
 };
 
 const modifyFood = async (food, id) => {
-  const sql = promisePool.format(`UPDATE foods SET ? WHERE food_id = ?`, [
-    food,
-    id,
-  ]);
+  const sql = promisePool.format(`UPDATE foods SET ? WHERE id = ?`, [food, id]);
 
   const rows = await promisePool.execute(sql);
   console.log('rows', rows);
@@ -43,7 +41,7 @@ const modifyFood = async (food, id) => {
 };
 
 const removeFood = async (id) => {
-  const sql = promisePool.format(`DELETE FROM foods WHERE food_id = ?`, [id]);
+  const sql = promisePool.format(`DELETE FROM foods WHERE id = ?`, [id]);
 
   const [rows] = await promisePool.execute(sql);
 

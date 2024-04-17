@@ -12,3 +12,21 @@ Content-Type: application/json
 
 ### List all foods
 GET http://localhost:3000/api/v1/foods
+
+### Get a food by id
+GET http://localhost:3000/api/v1/foods/1
+
+### Update a food
+PUT http://localhost:3000/api/v1/foods/1
+Content-Type: application/json
+
+{
+  "name": "Test Food Updated",
+  "description": "This is a test food updated",
+  "price": 20.99,
+  "category": "Test Category Updated",
+  "image": "testUpdate.jpg"
+}
+
+### Delete a food
+DELETE http://localhost:3000/api/v1/foods/1
