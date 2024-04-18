@@ -1,3 +1,4 @@
+import {isAdmin} from '../../middlewares.js';
 import {
   getCustomers,
   getCustomerById,
@@ -14,7 +15,7 @@ customerRouter.route('/').get(getCustomers).post(postCustomer);
 customerRouter
   .route('/:id')
   .get(getCustomerById)
-  .put(putCustomer)
-  .delete(deleteCustomer);
+  .put(isAdmin, putCustomer)
+  .delete(isAdmin, deleteCustomer);
 
 export default customerRouter;

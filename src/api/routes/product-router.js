@@ -7,15 +7,17 @@ import {
   deleteProduct,
 } from '../controllers/product-controller.js';
 
+import {isAdmin} from '../../middlewares.js';
+
 import multer from 'multer';
 
 const productRouter = express.Router();
 
-productRouter.route('/').get(getProduct).post(postProduct);
+productRouter.route('/').get(getProduct).post(isAdmin, postProduct);
 productRouter
   .route('/:id')
   .get(getProductById)
-  .put(putProduct)
-  .delete(deleteProduct);
+  .put(isAdmin, putProduct)
+  .delete(isAdmin, deleteProduct);
 
 export default productRouter;

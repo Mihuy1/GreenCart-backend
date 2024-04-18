@@ -20,4 +20,15 @@ const authenticationToken = (req, res, next) => {
   }
 };
 
-export {authenticationToken};
+const isAdmin = async (req, res, next) => {
+  console.log('isAdmin', res.locals.customer);
+  const customer = res.locals.customer;
+
+  if (customer.role !== 'admin') {
+    return res.sendStatus(403).json({message: 'Forbidden, not an admin'});
+  }
+
+  next();
+};
+
+export {authenticationToken, isAdmin};

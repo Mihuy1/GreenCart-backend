@@ -1,5 +1,5 @@
 import bcrypt from 'bcrypt';
-import {getCustomerByName} from '../models/customer-model.js';
+import {addCustomer, getCustomerByName} from '../models/customer-model.js';
 import jwt from 'jsonwebtoken';
 
 const postLogin = async (req, res) => {
@@ -39,4 +39,17 @@ const getMe = async (req, res) => {
   }
 };
 
-export {postLogin, getMe};
+const register = async (req, res) => {
+  const customer = req.body;
+  customer.password = bcrypt.hashSync(customer.password, 10);
+  const result = await addCustomer(customer);
+
+  if (result.customer_id) {
+    res.status(201);
+    res.json({message: 'New customer registered.', result});
+  } else {
+    res.sendStatus(400);
+  }
+};
+
+export {postLogin, getMe, register};
