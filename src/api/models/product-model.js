@@ -1,22 +1,23 @@
 import promisePool from '../../utils/database.js';
 
-const listAllFoods = async () => {
-  const [rows] = await promisePool.query('SELECT * FROM foods');
+const listAllProducts = async () => {
+  const [rows] = await promisePool.query('SELECT * FROM products');
   console.log('rows', rows);
   return rows;
 };
 
-const findFoodById = async (id) => {
-  const [rows] = await promisePool.execute('SELECT * FROM foods WHERE id = ?', [
-    id,
-  ]);
+const findProductById = async (id) => {
+  const [rows] = await promisePool.execute(
+    'SELECT * FROM products WHERE productId = ?',
+    [id]
+  );
   console.log('rows', rows);
   return rows;
 };
 
-const addFood = async (food) => {
+const addProduct = async (food) => {
   const {name, description, price, category, image} = food;
-  const sql = `INSERT INTO foods (name, description, price, category, image)
+  const sql = `INSERT INTO products (name, description, price, category, image)
     VALUES (?, ?, ?, ?, ?)`;
   const params = [name, description, price, category, image].map(
     (arvo) => arvo ?? null
@@ -29,8 +30,11 @@ const addFood = async (food) => {
   return {food_id: rows[0].insertId};
 };
 
-const modifyFood = async (food, id) => {
-  const sql = promisePool.format(`UPDATE foods SET ? WHERE id = ?`, [food, id]);
+const modifyProduct = async (food, id) => {
+  const sql = promisePool.format(`UPDATE products SET ? WHERE productId = ?`, [
+    food,
+    id,
+  ]);
 
   const rows = await promisePool.execute(sql);
   console.log('rows', rows);
@@ -40,8 +44,10 @@ const modifyFood = async (food, id) => {
   return {message: 'success'};
 };
 
-const removeFood = async (id) => {
-  const sql = promisePool.format(`DELETE FROM foods WHERE id = ?`, [id]);
+const removeProduct = async (id) => {
+  const sql = promisePool.format(`DELETE FROM products WHERE productId = ?`, [
+    id,
+  ]);
 
   const [rows] = await promisePool.execute(sql);
 
@@ -52,4 +58,10 @@ const removeFood = async (id) => {
   return {message: 'success'};
 };
 
-export {listAllFoods, findFoodById, addFood, modifyFood, removeFood};
+export {
+  listAllProducts,
+  findProductById,
+  addProduct,
+  modifyProduct,
+  removeProduct,
+};

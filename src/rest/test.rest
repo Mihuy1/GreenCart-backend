@@ -1,5 +1,5 @@
-### Add a new food
-POST http://localhost:3000/api/v1/foods
+### Add a new product
+POST http://localhost:3000/api/v1/products
 Content-Type: application/json
 
 {
@@ -10,14 +10,14 @@ Content-Type: application/json
   "image": "test.jpg"
 }
 
-### List all foods
-GET http://localhost:3000/api/v1/foods
+### List all products
+GET http://localhost:3000/api/v1/products
 
-### Get a food by id
-GET http://localhost:3000/api/v1/foods/2
+### Get a product by id
+GET http://localhost:3000/api/v1/products/2
 
-### Update a food
-PUT http://localhost:3000/api/v1/foods/2
+### Update a product
+PUT http://localhost:3000/api/v1/products/2
 Content-Type: application/json
 
 {
@@ -28,8 +28,8 @@ Content-Type: application/json
   "image": "testUpdate.jpg"
 }
 
-### Delete a food
-DELETE http://localhost:3000/api/v1/foods/1
+### Delete a product
+DELETE http://localhost:3000/api/v1/products/2
 
 
 
@@ -97,3 +97,34 @@ Content-Type: application/json
 
 ### Delete an order
 DELETE http://localhost:3000/api/v1/orders/8
+
+
+
+### list all shopping carts
+GET http://localhost:3000/api/v1/shoppingcarts
+
+### Add a new shopping cart
+POST http://localhost:3000/api/v1/shoppingcarts
+Content-Type: application/json
+
+{
+  "order_id": 1,
+  "product_id": 1,
+  "quantity": 2
+}
+
+### Get a shopping cart by id
+GET http://localhost:3000/api/v1/shoppingcarts/1
+
+### Update a shopping cart
+PUT http://localhost:3000/api/v1/shoppingcarts/1
+Content-Type: application/json
+
+{
+  "order_id": 1,
+  "product_id": 1,
+  "quantity": 3
+}
+
+### Delete a shopping cart
+DELETE http://localhost:3000/api/v1/shoppingcarts/1
