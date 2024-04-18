@@ -34,27 +34,66 @@ DELETE http://localhost:3000/api/v1/foods/1
 
 
 
-### Add a new user
-POST http://localhost:3000/api/v1/users
+### Add a new customer
+POST http://localhost:3000/api/v1/customers
 Content-Type: application/json
 
 {
-  "username": "Test User2",
-  "email": "test.user@gmail.com",
+  "name": "Urpo",
+  "address": "Helsinki katu",
+  "email": "urpo@yahoo.com",
+  "password": "qwerty",
+  "role": "user"
+}
+
+### List all customers
+GET http://localhost:3000/api/v1/customers
+
+
+### Get a customer by id
+GET http://localhost:3000/api/v1/customers/1
+
+### Modify a customer
+PUT http://localhost:3000/api/v1/customers/1
+Content-Type: application/json
+
+{
+  "name": "Urpo",
+  "address": "Helsinki katu 2",
+  "email": "dunno@gmail.com",
   "password": "password",
   "role": "user"
 }
 
-### List all users
-GET http://localhost:3000/api/v1/users
+### Delete a customer
+DELETE http://localhost:3000/api/v1/customers/1
 
-### Modify a user
-PUT http://localhost:3000/api/v1/users/3
+### list all orders
+GET http://localhost:3000/api/v1/orders
+
+### Add a new order
+POST http://localhost:3000/api/v1/orders
 Content-Type: application/json
 
 {
-  "username": "Test User2",
-  "email": "hey@gmail.com",
-  "password": "password",
-  "role": "user"
+  "customer_id": 1,
+  "orderDate": "2021-05-01",
+  "price": 21.98
 }
+
+### Get an order by id
+GET http://localhost:3000/api/v1/orders/1
+
+### Update an order
+PUT http://localhost:3000/api/v1/orders/8
+Content-Type: application/json
+
+{
+  "customer_id": 1,
+  "orderDate": "2022-05-02",
+  "price": 22.98
+}
+
+
+### Delete an order
+DELETE http://localhost:3000/api/v1/orders/8
