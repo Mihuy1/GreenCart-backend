@@ -56,10 +56,20 @@ const removeCustomer = async (id) => {
   return {message: 'success'};
 };
 
+const getCustomerByName = async (name) => {
+  const sql = `SELECT * FROM customers WHERE name = ?`;
+  const params = [name];
+  const [rows] = await promisePool.execute(sql, params);
+  if (rows.length === 0) return false;
+
+  return rows[0];
+};
+
 export {
   listAllcustomers,
   findCustomerById,
   addCustomer,
   modifyCustomer,
   removeCustomer,
+  getCustomerByName,
 };

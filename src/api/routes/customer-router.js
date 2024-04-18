@@ -1,16 +1,20 @@
 import {
-  getcustomers,
-  getUserById,
-  postUser,
-  putUser,
-  deleteUser,
+  getCustomers,
+  getCustomerById,
+  postCustomer,
+  putCustomer,
+  deleteCustomer,
 } from '../controllers/customer-controller.js';
 
 import express from 'express';
 
 const customerRouter = express.Router();
 
-customerRouter.route('/').get(getcustomers).post(postUser);
-customerRouter.route('/:id').get(getUserById).put(putUser).delete(deleteUser);
+customerRouter.route('/').get(getCustomers).post(postCustomer);
+customerRouter
+  .route('/:id')
+  .get(getCustomerById)
+  .put(putCustomer)
+  .delete(deleteCustomer);
 
 export default customerRouter;

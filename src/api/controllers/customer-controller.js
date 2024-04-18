@@ -6,11 +6,13 @@ import {
   addCustomer,
 } from '../models/customer-model.js';
 
-const getcustomers = async (req, res) => {
+import bcrypt from 'bcrypt';
+
+const getCustomers = async (req, res) => {
   res.json(await listAllcustomers());
 };
 
-const getUserById = async (req, res) => {
+const getCustomerById = async (req, res) => {
   const user = await findCustomerById(req.params.id);
   if (user) {
     res.json(user);
@@ -19,8 +21,9 @@ const getUserById = async (req, res) => {
   }
 };
 
-const postUser = async (req, res) => {
-  console.log('postUser', req.body);
+const postCustomer = async (req, res) => {
+  req.body.password = bcrypt.hashSync(req.body.password, 10);
+  console.log('postCustomer', req.body);
   const result = await addCustomer(req.body);
   if (result.customer_id) {
     res.status(201);
@@ -30,7 +33,7 @@ const postUser = async (req, res) => {
   }
 };
 
-const putUser = async (req, res) => {
+const putCustomer = async (req, res) => {
   const result = await modifyCustomer(req.params.id, req.body);
   if (result) {
     res.status(200);
@@ -40,7 +43,7 @@ const putUser = async (req, res) => {
   }
 };
 
-const deleteUser = async (req, res) => {
+const deleteCustomer = async (req, res) => {
   const userId = req.params.id;
 
   const result = await removeCustomer(userId);
@@ -53,4 +56,10 @@ const deleteUser = async (req, res) => {
   }
 };
 
-export {getcustomers, getUserById, postUser, putUser, deleteUser};
+export {
+  getCustomers,
+  getCustomerById,
+  postCustomer,
+  putCustomer,
+  deleteCustomer,
+};
