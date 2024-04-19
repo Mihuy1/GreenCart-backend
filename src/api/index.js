@@ -5,6 +5,7 @@ import orderRouter from './routes/order-route.js';
 import shoppingCartRouter from './routes/shoppingCart-router.js';
 import authRouter from './routes/auth-router.js';
 import categoryRouter from './routes/category-router.js';
+import reviewRouter from './routes/review-router.js';
 
 const router = express.Router();
 
@@ -15,5 +16,6 @@ router.use('/orders', orderRouter);
 router.use('/shoppingcarts', shoppingCartRouter);
 router.use('/auth', authRouter);
 router.use('/categories', categoryRouter);
+router.use('/reviews', reviewRouter);
 
 export default router;
