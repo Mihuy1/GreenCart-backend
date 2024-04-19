@@ -20,9 +20,9 @@ const getProductById = async (req, res) => {
 };
 
 const postProduct = async (req, res) => {
-  console.log('postFood', req.body);
+  console.log('postProduct', req.body);
   const result = await addProduct(req.body);
-  if (result.food_id) {
+  if (result.product_id) {
     res.status(201);
     res.json({message: 'New product added.', result});
   } else {

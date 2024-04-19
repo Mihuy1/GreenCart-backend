@@ -1,13 +1,14 @@
 ### Add a new product
 POST http://localhost:3000/api/v1/products
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjdXN0b21lcklkIjo1LCJuYW1lIjoiYWRtaW4iLCJhZGRyZXNzIjoibm9uZSIsImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzEzNTEwNDMxLCJleHAiOjE3MTM1OTY4MzF9.8MCwZM1tSoXTtVeg1hjEXYrNQKd4ciXq2zQuVuwpyLg
 Content-Type: application/json
 
 {
   "name": "Test Food",
   "description": "This is a test food",
-  "price": 10.99,
-  "category": "Test Category",
-  "image": "test.jpg"
+  "price": 19.99,
+  "image": "test.jpg",
+  "categoryId": 1
 }
 
 ### List all products
@@ -29,18 +30,21 @@ Content-Type: application/json
 }
 
 ### Delete a product
-DELETE http://localhost:3000/api/v1/products/2
+DELETE http://localhost:3000/api/v1/products/8
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjdXN0b21lcklkIjo1LCJuYW1lIjoiYWRtaW4iLCJhZGRyZXNzIjoibm9uZSIsImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzEzNTEwNDMxLCJleHAiOjE3MTM1OTY4MzF9.8MCwZM1tSoXTtVeg1hjEXYrNQKd4ciXq2zQuVuwpyLg
+
 
 
 
 
 ### Add a new customer
 POST http://localhost:3000/api/v1/customers
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjdXN0b21lcklkIjo1LCJuYW1lIjoiYWRtaW4iLCJhZGRyZXNzIjoibm9uZSIsImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzEzNTEwNDMxLCJleHAiOjE3MTM1OTY4MzF9.8MCwZM1tSoXTtVeg1hjEXYrNQKd4ciXq2zQuVuwpyLg
 Content-Type: application/json
 
 {
   "name": "Patrik",
-  "address": "Espoo katu",
+  "address": "none",
   "email": "patrik@gmail.com",
   "password": "123",
   "role": "user"
@@ -54,33 +58,34 @@ GET http://localhost:3000/api/v1/customers
 GET http://localhost:3000/api/v1/customers/1
 
 ### Modify a customer
-PUT http://localhost:3000/api/v1/customers/1
+PUT http://localhost:3000/api/v1/customers/3
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjdXN0b21lcklkIjo1LCJuYW1lIjoiYWRtaW4iLCJhZGRyZXNzIjoibm9uZSIsImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzEzNTEwNDMxLCJleHAiOjE3MTM1OTY4MzF9.8MCwZM1tSoXTtVeg1hjEXYrNQKd4ciXq2zQuVuwpyLg
 Content-Type: application/json
 
 {
-  "name": "Urpo",
+  "name": "Patrik",
   "address": "Helsinki katu 2",
-  "email": "dunno@gmail.com",
-  "password": "password",
+  "email": "patrik@gmail.com",
+  "password": "123",
   "role": "user"
 }
 
 ### Delete a customer
-DELETE http://localhost:3000/api/v1/customers/1
-
+DELETE http://localhost:3000/api/v1/customers/3
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjdXN0b21lcklkIjo1LCJuYW1lIjoiYWRtaW4iLCJhZGRyZXNzIjoibm9uZSIsImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzEzNTEwNDMxLCJleHAiOjE3MTM1OTY4MzF9.8MCwZM1tSoXTtVeg1hjEXYrNQKd4ciXq2zQuVuwpyLg
 
 ### Post login
 POST http://localhost:3000/api/v1/auth/login
 content-type: application/json
 
 {
-  "name": "Patrik",
-  "password": "123"
+  "name": "admin",
+  "password": "admin123"
 }
 
 ### Get my user info
 GET http://localhost:3000/api/v1/auth/me
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjdXN0b21lcklkIjozLCJuYW1lIjoiUGF0cmlrIiwiYWRkcmVzcyI6IkVzcG9vIGthdHUiLCJlbWFpbCI6InBhdHJpa0BnbWFpbC5jb20iLCJyb2xlIjoidXNlciIsImlhdCI6MTcxMzQzOTAwNSwiZXhwIjoxNzEzNTI1NDA1fQ.DuoCFtac9XAZIz8kU4HIY2Yggc-IbDs6tpMcg38GtJQ
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjdXN0b21lcklkIjo1LCJuYW1lIjoiYWRtaW4iLCJhZGRyZXNzIjoibm9uZSIsImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzEzNTEwNDMxLCJleHAiOjE3MTM1OTY4MzF9.8MCwZM1tSoXTtVeg1hjEXYrNQKd4ciXq2zQuVuwpyLg
 
 
 ### list all orders
@@ -91,27 +96,29 @@ POST http://localhost:3000/api/v1/orders
 Content-Type: application/json
 
 {
-  "customer_id": 1,
+  "customer_id": 6,
   "orderDate": "2021-05-01",
   "price": 21.98
 }
 
 ### Get an order by id
-GET http://localhost:3000/api/v1/orders/1
+GET http://localhost:3000/api/v1/orders/2
 
 ### Update an order
-PUT http://localhost:3000/api/v1/orders/8
+PUT http://localhost:3000/api/v1/orders/2
 Content-Type: application/json
 
 {
-  "customer_id": 1,
+  "customer_id": 6,
   "orderDate": "2022-05-02",
   "price": 22.98
 }
 
 
 ### Delete an order
-DELETE http://localhost:3000/api/v1/orders/8
+DELETE http://localhost:3000/api/v1/orders/2
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjdXN0b21lcklkIjo1LCJuYW1lIjoiYWRtaW4iLCJhZGRyZXNzIjoibm9uZSIsImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzEzNTEwNDMxLCJleHAiOjE3MTM1OTY4MzF9.8MCwZM1tSoXTtVeg1hjEXYrNQKd4ciXq2zQuVuwpyLg
+
 
 
 
@@ -123,22 +130,22 @@ POST http://localhost:3000/api/v1/shoppingcarts
 Content-Type: application/json
 
 {
-  "orderId": 1,
-  "productId": 3,
+  "orderId": 3,
+  "productId": 9,
   "quantity": 2
 }
 
 ### Get a shopping cart by id
-GET http://localhost:3000/api/v1/shoppingcarts/1
+GET http://localhost:3000/api/v1/shoppingcarts/4
 
 ### Update a shopping cart
-PUT http://localhost:3000/api/v1/shoppingcarts/1
+PUT http://localhost:3000/api/v1/shoppingcarts/4
 Content-Type: application/json
 
 {
-  "order_id": 1,
-  "product_id": 1,
-  "quantity": 3
+  "orderId": 3,
+  "productId": 9,
+  "quantity": 5
 }
 
 ### Delete a shopping cart
@@ -156,3 +163,29 @@ Content-Type: application/json
   "password": "newpassword",
   "role": "user"
 }
+
+### Get all categories
+GET http://localhost:3000/api/v1/categories
+
+### Add a new category
+POST http://localhost:3000/api/v1/categories
+Content-Type: application/json
+
+{
+  "name": "Test Category"
+}
+
+### Get a category by id
+GET http://localhost:3000/api/v1/categories/1
+
+### Update a category
+PUT http://localhost:3000/api/v1/categories/1
+Content-Type: application/json
+
+{
+  "name": "Test Category Updated",
+  "description": "This is a test category updated"
+}
+
+### Delete a category
+DELETE http://localhost:3000/api/v1/categories/1

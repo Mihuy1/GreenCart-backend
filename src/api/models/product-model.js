@@ -15,11 +15,11 @@ const findProductById = async (id) => {
   return rows;
 };
 
-const addProduct = async (food) => {
-  const {name, description, price, category, image} = food;
-  const sql = `INSERT INTO products (name, description, price, category, image)
+const addProduct = async (product) => {
+  const {name, description, price, image, categoryId} = product;
+  const sql = `INSERT INTO products (name, description, price, image, categoryId)
     VALUES (?, ?, ?, ?, ?)`;
-  const params = [name, description, price, category, image].map(
+  const params = [name, description, price, image, categoryId].map(
     (arvo) => arvo ?? null
   );
   const rows = await promisePool.execute(sql, params);
@@ -27,12 +27,12 @@ const addProduct = async (food) => {
 
   if (rows[0].affectedRows === 0) return false;
 
-  return {food_id: rows[0].insertId};
+  return {product_id: rows[0].insertId};
 };
 
-const modifyProduct = async (food, id) => {
+const modifyProduct = async (product, id) => {
   const sql = promisePool.format(`UPDATE products SET ? WHERE productId = ?`, [
-    food,
+    product,
     id,
   ]);
 
