@@ -24,9 +24,33 @@ const postLogin = async (req, res) => {
   };
 
   const token = jwt.sign(customerWithNoPassword, process.env.JWT_SECRET, {
-    expiresIn: '24h',
+    expiresIn: '48h',
   });
   res.json({customer: customerWithNoPassword, token});
+};
+
+const register = async (req, res) => {
+  const customer = req.body;
+  customer.password = bcrypt.hashSync(customer.password, 10);
+
+  const customerWithNoPassword = {
+    name: customer.name,
+    address: customer.address,
+    email: customer.email,
+    role: customer.role,
+  };
+
+  customer.token = jwt.sign(customerWithNoPassword, process.env.JWT_SECRET, {
+    expiresIn: '48h',
+  });
+  const result = await addCustomer(customer);
+
+  if (result.customer_id) {
+    res.status(201);
+    res.json({message: 'New customer registered.', result});
+  } else {
+    res.sendStatus(400);
+  }
 };
 
 const getMe = async (req, res) => {
@@ -36,19 +60,6 @@ const getMe = async (req, res) => {
     res.json({message: 'token ok', customer: res.locals.customer});
   } else {
     res.sendStatus(404);
-  }
-};
-
-const register = async (req, res) => {
-  const customer = req.body;
-  customer.password = bcrypt.hashSync(customer.password, 10);
-  const result = await addCustomer(customer);
-
-  if (result.customer_id) {
-    res.status(201);
-    res.json({message: 'New customer registered.', result});
-  } else {
-    res.sendStatus(400);
   }
 };
 
