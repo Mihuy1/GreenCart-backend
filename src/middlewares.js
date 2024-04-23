@@ -1,6 +1,23 @@
 import jwt from 'jsonwebtoken';
 import 'dotenv/config';
-import promisePool from './utils/database.js';
+
+import sharp from 'sharp';
+
+const createThumbnail = (req, res, next) => {
+  if (!req.file) {
+    next();
+    console.log('No file to resize');
+    return;
+  }
+
+  const [filename, extension] = req.file.filename.split('.');
+
+  sharp(req.file.path)
+    .resize(160, 160)
+    .png()
+    .toFile(`${req.file.destination}/${filename}_thumb.${extension}`)
+    .then(() => next());
+};
 
 const authenticationToken = (req, res, next) => {
   console.log('authenticationToken', req.headers);
@@ -31,4 +48,4 @@ const isAdmin = async (req, res, next) => {
   next();
 };
 
-export {authenticationToken, isAdmin};
+export {authenticationToken, isAdmin, createThumbnail}; // Export the multer upload middleware

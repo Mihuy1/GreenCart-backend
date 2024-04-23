@@ -1,4 +1,8 @@
-import {authenticationToken, isAdmin} from '../../middlewares.js';
+import {
+  authenticationToken,
+  isAdmin,
+  createThumbnail,
+} from '../../middlewares.js';
 import {
   getCustomers,
   getCustomerById,
@@ -11,10 +15,7 @@ import express from 'express';
 
 const customerRouter = express.Router();
 
-customerRouter
-  .route('/')
-  .get(getCustomers)
-  .post(authenticationToken, isAdmin, postCustomer);
+customerRouter.route('/').get(getCustomers).post(postCustomer);
 customerRouter
   .route('/:id')
   .get(getCustomerById)

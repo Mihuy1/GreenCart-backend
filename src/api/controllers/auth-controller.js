@@ -23,9 +23,7 @@ const postLogin = async (req, res) => {
     role: customer.role,
   };
 
-  const token = jwt.sign(customerWithNoPassword, process.env.JWT_SECRET, {
-    expiresIn: '48h',
-  });
+  const token = jwt.sign(customerWithNoPassword, process.env.JWT_SECRET);
   res.json({customer: customerWithNoPassword, token});
 };
 

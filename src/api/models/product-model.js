@@ -15,11 +15,13 @@ const findProductById = async (id) => {
   return rows;
 };
 
-const addProduct = async (product) => {
-  const {name, description, price, image, categoryId} = product;
-  const sql = `INSERT INTO products (name, description, price, image, categoryId)
+const addProduct = async (product, file) => {
+  console.log('file product', file);
+  const {name, description, price, categoryId} = product;
+
+  const sql = `INSERT INTO products (name, description, price, file, categoryId)
     VALUES (?, ?, ?, ?, ?)`;
-  const params = [name, description, price, image, categoryId].map(
+  const params = [name, description, price, file.filename, categoryId].map(
     (arvo) => arvo ?? null
   );
   const rows = await promisePool.execute(sql, params);

@@ -20,8 +20,10 @@ const getProductById = async (req, res) => {
 };
 
 const postProduct = async (req, res) => {
-  console.log('postProduct', req.body);
-  const result = await addProduct(req.body);
+  console.log('postCat', req.body);
+  console.log('req', req);
+  console.log('file', req.file);
+  const result = await addProduct(req.body, req.file);
   if (result.product_id) {
     res.status(201);
     res.json({message: 'New product added.', result});
