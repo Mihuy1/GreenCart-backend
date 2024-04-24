@@ -62,13 +62,7 @@ const upload = multer({
 productRouter
   .route('/')
   .get(getProduct)
-  .post(
-    authenticationToken,
-    isAdmin,
-    upload.single('file'),
-    createThumbnail,
-    postProduct
-  );
+  .post(upload.single('file'), createThumbnail, postProduct);
 productRouter
   .route('/:id')
   .get(getProductById)

@@ -15,14 +15,14 @@ Content-Type: application/json
 GET http://localhost:3000/api/v1/products
 
 ### Get a product by id
-GET http://localhost:3000/api/v1/products/12
+GET http://localhost:3000/api/v1/products/13
 
 ### Update a product
 PUT http://localhost:3000/api/v1/products/2
 Content-Type: application/json
 
 {
-  "name": "Test Food Updated",
+  "name": "Frozen foods",
   "description": "This is a test food updated",
   "price": 20.99,
   "category": "Test Category Updated",
@@ -180,9 +180,10 @@ GET http://localhost:3000/api/v1/categories
 ### Add a new category
 POST http://localhost:3000/api/v1/categories
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjdXN0b21lcklkIjoxMCwibmFtZSI6IlBhdHJpa0giLCJhZGRyZXNzIjoibm9uZSIsImVtYWlsIjoicGF0cmlrLmh5eXRpYWluZW5AZ21haWwuY29tIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzEzOTc3NTE3fQ.92M0SOkmYf-WpIb9IP8IbjOy1CDj20GYrlrp_2hgpoA
 
 {
-  "name": "Test Category"
+  "name": "Salty products"
 }
 
 ### Get a category by id
