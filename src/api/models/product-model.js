@@ -38,6 +38,9 @@ const modifyProduct = async (product, id) => {
     id,
   ]);
 
+  console.log('Modify Product product', product);
+  console.log('Modify Product product file', product.file);
+
   const rows = await promisePool.execute(sql);
   console.log('rows', rows);
 

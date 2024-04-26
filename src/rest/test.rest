@@ -61,7 +61,7 @@ Content-Type: application/json
   "password": "patrik123",
   "role": "admin"
 }
-### Get token
+### Login
 POST http://localhost:3000/api/v1/auth/login
 Content-Type: application/json
 
@@ -69,6 +69,7 @@ Content-Type: application/json
   "name": "testi",
   "password": "patrik123"
 }
+
 
 ### List all customers
 GET http://localhost:3000/api/v1/customers
@@ -94,19 +95,10 @@ Content-Type: application/json
 DELETE http://localhost:3000/api/v1/customers/3
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjdXN0b21lcklkIjoxMSwibmFtZSI6InBhdHJpa2h5IiwiYWRkcmVzcyI6Im5vbmUiLCJlbWFpbCI6InBhdHJpay5oeXl0aWFpbmVuQGdtYWlsLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTcxNDExNzc3Mn0.QimAUQWUmjt5Km5zidY72-lCeY5Wx4Y-zttWr4tqKZg
 
-### Post login
-POST http://localhost:3000/api/v1/auth/login
-content-type: application/json
-
-{
-  "name": "admin",
-  "password": "admin123"
-}
 
 ### Get my user info
 GET http://localhost:3000/api/v1/auth/me
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjdXN0b21lcklkIjoxMSwibmFtZSI6InBhdHJpa2h5IiwiYWRkcmVzcyI6Im5vbmUiLCJlbWFpbCI6InBhdHJpay5oeXl0aWFpbmVuQGdtYWlsLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTcxNDExNzc3Mn0.QimAUQWUmjt5Km5zidY72-lCeY5Wx4Y-zttWr4tqKZg
-
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjdXN0b21lcklkIjoxOCwibmFtZSI6InRlc3RpIiwiYWRkcmVzcyI6Im5vbmUiLCJlbWFpbCI6InRlc3RpLmh5eXRpYWluZW5AZ21haWwuY29tIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzE0MTI0Nzc1fQ.0P0tQvjT8aesG7BTnG_Xu0iIWRMJVU5LyB4zfI57YJM
 
 ### list all orders
 GET http://localhost:3000/api/v1/orders

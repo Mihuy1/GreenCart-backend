@@ -29,9 +29,9 @@ const getProductById = async (req, res, error) => {
 
 const postProduct = async (req, res, next) => {
   try {
-    console.log('postCat', req.body);
-    console.log('req', req);
-    console.log('file', req.file);
+    console.log('postProduct', req.body);
+    console.log('postProduct req', req);
+    console.log('postProduct file', req.file);
     const result = await addProduct(req.body, req.file);
     if (result.product_id) {
       res.status(201);
@@ -46,8 +46,18 @@ const postProduct = async (req, res, next) => {
 
 const putProduct = async (req, res, next) => {
   try {
+    console.log('putProduct', req.body);
+    console.log('putProduct req', req);
+    console.log('putProduct-controller file', req.file);
     const productId = req.params.id;
     const updatedFood = req.body;
+
+    // If a file was uploaded, add its path to the updatedFood object
+    if (req.file) {
+      updatedFood.file = req.file.filename;
+    }
+
+    console.log('Put Food updatedFood', updatedFood);
 
     const result = await modifyProduct(updatedFood, productId);
 
@@ -60,6 +70,31 @@ const putProduct = async (req, res, next) => {
     next(error);
   }
 };
+
+/*const putProduct = async (req, res, next) => {
+  try {
+    console.log('putProduct', req.body);
+    console.log('putProduct req', req);
+    console.log('putProduct file', req.file);
+    const productId = req.params.id;
+    const updatedFood = req.body;
+
+    // If a file was uploaded, add its path to the updatedFood object
+    if (req.file) {
+      updatedFood.imagePath = req.file.path;
+    }
+
+    const result = await modifyProduct(updatedFood, productId);
+
+    if (result) {
+      res.status(201).json(result);
+    } else {
+      res.sendStatus(404);
+    }
+  } catch (error) {
+    next(error);
+  }
+};*/
 
 const deleteProduct = async (req, res, next) => {
   try {
