@@ -14,6 +14,17 @@ const findShoppingCartById = async (id) => {
   return rows;
 };
 
+const findShoppingCartInfo = async (id) => {
+  const [rows] = await promisePool.execute(
+    `SELECT p.name, p.description, p.price, s.quantity
+     FROM shoppingCarts s
+     JOIN products p ON s.productId = p.productId
+     WHERE s.shoppingCartId = ?`,
+    [id]
+  );
+  return rows;
+};
+
 const addShoppingCart = async (shoppingCart) => {
   const {orderId, productId, quantity} = shoppingCart;
   const sql = `INSERT INTO shoppingCarts (orderId, productId, quantity)
@@ -55,6 +66,7 @@ const removeShoppingCart = async (id) => {
 export {
   listAllShoppingCart,
   findShoppingCartById,
+  findShoppingCartInfo,
   addShoppingCart,
   modifyShoppingCart,
   removeShoppingCart,

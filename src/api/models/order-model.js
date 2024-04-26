@@ -15,16 +15,20 @@ const findOrderById = async (id) => {
 };
 
 const addOrder = async (order) => {
-  const {customer_id, orderDate, price} = order;
+  console.log('Received order:', order); // Log the received order object
+  const {customerId, orderDate, price} = order; // Use correct property names
+  console.log('Customer ID:', customerId); // Log the customer ID
+  console.log('Order Date:', orderDate); // Log the order date
+  console.log('Price:', price); // Log the price
   const sql = `INSERT INTO orders (customerId, orderDate, price)
     VALUES (?, ?, ?)`;
-  const params = [customer_id, orderDate, price].map((arvo) => arvo ?? null);
-  const rows = await promisePool.execute(sql, params);
+  const params = [customerId, orderDate, price].map((arvo) => arvo ?? null);
+  const [rows] = await promisePool.execute(sql, params);
   console.log('rows', rows);
 
-  if (rows[0].affectedRows === 0) return false;
+  if (rows.affectedRows === 0) return false;
 
-  return {order_id: rows[0].insertId};
+  return {orderId: rows.insertId};
 };
 
 const modifyOrder = async (id, order) => {

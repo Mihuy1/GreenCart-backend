@@ -2,6 +2,7 @@ import express from 'express';
 import {
   getShoppingCart,
   getShoppingCartById,
+  getShoppingCartInfo,
   postShoppingCart,
   putShoppingCart,
   deleteShoppingCart,
@@ -13,7 +14,7 @@ const shoppingCartRouter = express.Router();
 shoppingCartRouter.route('/').get(getShoppingCart).post(postShoppingCart);
 shoppingCartRouter
   .route('/:id')
-  .get(getShoppingCartById)
+  .get(getShoppingCartInfo)
   .put(putShoppingCart)
   .delete(deleteShoppingCart);
 

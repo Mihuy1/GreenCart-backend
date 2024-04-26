@@ -62,11 +62,17 @@ const upload = multer({
 productRouter
   .route('/')
   .get(getProduct)
-  .post(upload.single('file'), createThumbnail, postProduct);
+  .post(
+    authenticationToken,
+    isAdmin,
+    upload.single('file'),
+    createThumbnail,
+    postProduct
+  );
 productRouter
   .route('/:id')
   .get(getProductById)
-  .put(authenticationToken, isAdmin, putProduct)
+  .put(authenticationToken, isAdmin, upload.single('file'), putProduct)
   .delete(authenticationToken, isAdmin, deleteProduct);
 
 export default productRouter;

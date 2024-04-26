@@ -43,17 +43,23 @@ const modifyCustomer = async (id, user) => {
 };
 
 const removeCustomer = async (id) => {
-  const sql = promisePool.format(`DELETE FROM customers WHERE customerId = ?`, [
-    id,
-  ]);
+  try {
+    const sql = promisePool.format(
+      `DELETE FROM customers WHERE customerId = ?`,
+      [id]
+    );
 
-  const [rows] = await promisePool.execute(sql);
+    const [rows] = await promisePool.execute(sql);
 
-  if (rows.affectedRows === 0) {
+    if (rows.affectedRows === 0) {
+      return false;
+    }
+
+    return {message: 'success'};
+  } catch (e) {
+    console.error('removeCustomer', e.message);
     return false;
   }
-
-  return {message: 'success'};
 };
 
 const getCustomerByName = async (name) => {
@@ -65,6 +71,21 @@ const getCustomerByName = async (name) => {
   return rows[0];
 };
 
+const getCustomerByEmail = async (email) => {
+  try {
+    const sql = `SELECT * FROM customers WHERE email = ?`;
+    const params = [email];
+
+    const [rows] = await promisePool.execute(sql, params);
+    if (rows.length === 0) return false;
+
+    return rows[0];
+  } catch (e) {
+    console.error('getCustomerByEmail', e.message);
+    return false;
+  }
+};
+
 export {
   listAllcustomers,
   findCustomerById,
@@ -72,4 +93,5 @@ export {
   modifyCustomer,
   removeCustomer,
   getCustomerByName,
+  getCustomerByEmail,
 };

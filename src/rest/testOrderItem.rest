@@ -1,0 +1,44 @@
+POST http://localhost:3000/api/v1/auth/register
+
+Content-Type: application/json
+{
+  "name": "test",
+  "address": "Myllypuro",
+  "email": "test@metropolia.fi",
+  "password": "123",
+  "role": "admin"
+}
+
+### get token
+POST http://localhost:3000/api/v1/auth/login
+
+Content-Type: application/json
+{
+  "name": "patrikhy",
+  "password": "patrik123"
+}
+
+### Create a new order
+POST http://localhost:3000/api/v1/orders
+
+Content-Type: application/json
+
+{
+  "customerId": 11,
+  "orderDate": "2021-05-01",
+  "price": 22
+}
+
+### Create a shopping cart
+POST http://localhost:3000/api/v1/shoppingcarts
+
+Content-Type: application/json
+
+{
+  "orderId": 22,
+  "productId": 1,
+  "quantity": 2
+}
+
+### products and orders
+GET http://localhost:3000/api/v1/productsorders
