@@ -1,3 +1,4 @@
+import {authenticationToken} from '../../middlewares.js';
 import {
   getReview,
   getReviewById,
@@ -13,8 +14,8 @@ const reviewRouter = express.Router();
 reviewRouter.route('/').get(getReview).post(postReview);
 reviewRouter
   .route('/:id')
-  .get(getReviewById)
-  .put(putReview)
-  .delete(deleteReview);
+  .get(authenticationToken, getReviewById)
+  .put(authenticationToken, putReview)
+  .delete(authenticationToken, deleteReview);
 
 export default reviewRouter;

@@ -19,7 +19,7 @@ customerRouter.route('/').get(getCustomers).post(postCustomer);
 customerRouter
   .route('/:id')
   .get(getCustomerById)
-  .put(authenticationToken, isAdmin, putCustomer)
+  .put(authenticationToken, putCustomer)
   .delete(authenticationToken, isAdmin, deleteCustomer);
 
 export default customerRouter;
