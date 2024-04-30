@@ -45,7 +45,7 @@ const postCustomer = async (req, res, next) => {
   }
 };
 
-const putCustomer = async (req, res) => {
+const putCustomer = async (req, res, next) => {
   try {
     const result = await modifyCustomer(req.params.id, req.body);
     if (result) {
