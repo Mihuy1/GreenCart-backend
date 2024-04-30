@@ -47,6 +47,8 @@ const postCustomer = async (req, res, next) => {
 
 const putCustomer = async (req, res, next) => {
   try {
+    req.body.password = bcrypt.hashSync(req.body.password, 10);
+    console.log('putCustomer', req.body);
     const result = await modifyCustomer(req.params.id, req.body);
     if (result) {
       res.status(200);

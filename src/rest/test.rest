@@ -51,15 +51,15 @@ Content-Type: application/json
 }
 
 ### Register a new customer
-POST http://localhost:3000/api/v1/auth/register
+POST http://10.120.32.54/app/api/v1/auth/register
 Content-Type: application/json
 
 {
-  "name": "testi",
-  "address": "none",
-  "email": "testi.hyytiainen@gmail.com",
-  "password": "patrik123",
-  "role": "admin"
+  "name": "test",
+  "address": "Helsinki katu 2",
+  "email": "test@gmail.com",
+  "password": "123",
+  "role": "user"
 }
 ### Login
 POST http://localhost:3000/api/v1/auth/login
@@ -79,15 +79,15 @@ GET http://localhost:3000/api/v1/customers
 GET http://localhost:3000/api/v1/customers/1
 
 ### Modify a customer
-PUT http://localhost:3000/api/v1/customers/17
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjdXN0b21lcklkIjoxMSwibmFtZSI6InBhdHJpa2h5IiwiYWRkcmVzcyI6Im5vbmUiLCJlbWFpbCI6InBhdHJpay5oeXl0aWFpbmVuQGdtYWlsLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTcxNDExNzc3Mn0.QimAUQWUmjt5Km5zidY72-lCeY5Wx4Y-zttWr4tqKZg
+PUT http://10.120.32.54/app/api/v1/customers/13
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjdXN0b21lcklkIjoxNCwibmFtZSI6InRlc3QiLCJhZGRyZXNzIjoiSGVsc2lua2kga2F0dSAyIiwiZW1haWwiOiJ0ZXN0QGdtYWlsLmNvbSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzE0NDgzOTIyfQ.0Svpxum3YVABky9kZR_hLulcwf5pD0smqlTvynILFWM
 Content-Type: application/json
 
 {
-  "name": "PatrikH",
-  "address": "Helsinki katu 2",
+  "name": "testii",
+  "address": "Helsinki katu 5",
   "email": "patrik@gmail.com",
-  "password": "123",
+  "password": "1234",
   "role": "user"
 }
 
