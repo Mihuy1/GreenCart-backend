@@ -28,7 +28,7 @@ const addCategory = async (category, file) => {
 };
 
 const modifyCategory = async (id, category, file) => {
-  const {name, file} = category;
+  const {name} = category;
   const sql = `UPDATE categories SET name = ?, SET file = ? WHERE categoryId = ?`;
   const params = [name, file.filename, id];
 
