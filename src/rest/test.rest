@@ -55,21 +55,29 @@ POST http://10.120.32.54/app/api/v1/auth/register
 Content-Type: application/json
 
 {
-  "name": "test",
+  "name": "PatrikH",
   "address": "Helsinki katu 2",
-  "email": "test@gmail.com",
+  "email": "gfds@gmail.com",
   "password": "123",
-  "role": "user"
+  "role": "admin"
 }
 ### Login
+POST http://10.120.32.54/app/api/v1/auth/login
+Content-Type: application/json
+
+{
+  "name": "PatrikH",
+  "password": "123"
+}
+
+### Login local
 POST http://localhost:3000/api/v1/auth/login
 Content-Type: application/json
 
 {
-  "name": "testi",
+  "name": "patrikhy",
   "password": "patrik123"
 }
-
 
 ### List all customers
 GET http://localhost:3000/api/v1/customers
@@ -79,16 +87,15 @@ GET http://localhost:3000/api/v1/customers
 GET http://localhost:3000/api/v1/customers/1
 
 ### Modify a customer
-PUT http://10.120.32.54/app/api/v1/customers/13
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjdXN0b21lcklkIjoxNCwibmFtZSI6InRlc3QiLCJhZGRyZXNzIjoiSGVsc2lua2kga2F0dSAyIiwiZW1haWwiOiJ0ZXN0QGdtYWlsLmNvbSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzE0NDgzOTIyfQ.0Svpxum3YVABky9kZR_hLulcwf5pD0smqlTvynILFWM
+PUT http://10.120.32.54/app/api/v1/customers/14
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjdXN0b21lcklkIjoxNiwibmFtZSI6InBldHRlcmlwdW5ha3Vvbm8iLCJhZGRyZXNzIjoiSGVsc2lua2kga2F0dSAyIiwiZW1haWwiOiJ0ZXN0YWRzZkBnbWFpbC5jb20iLCJyb2xlIjoidXNlciIsImlhdCI6MTcxNDQ4NTM4N30.0yNEl8y9woi9MgYdPYPDsme3Tb5O6QdcmHME3KQmoPo
 Content-Type: application/json
 
 {
-  "name": "testii",
-  "address": "Helsinki katu 5",
+  "name": "petteripunakuono",
+  "address": "Helsinki katu 6",
   "email": "patrik@gmail.com",
-  "password": "1234",
-  "role": "user"
+  "password": "123",
 }
 
 ### Delete a customer
@@ -104,13 +111,14 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjdXN0b21lcklkIjoxO
 GET http://localhost:3000/api/v1/orders
 
 ### Add a new order
-POST http://localhost:3000/api/v1/orders
+POST http://10.120.32.54/app/api/v1/orders
 Content-Type: application/json
 
 {
   "customerId": 11,
   "orderDate": "2021-05-01",
-  "price": 21.98
+  "price": 21.98,
+  "status_code": 2
 }
 
 ### Get an order by id

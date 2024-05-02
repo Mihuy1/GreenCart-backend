@@ -16,9 +16,10 @@ const findCategoryById = async (id) => {
 };
 
 const addCategory = async (category) => {
-  const {name} = category;
-  const sql = `INSERT INTO categories (name) VALUES (?)`;
-  const params = [name].map((arvo) => arvo ?? null);
+  const {name, file} = category;
+  console.log('addCategory', name, file);
+  const sql = `INSERT INTO categories (name, file) VALUES (?, ?)`;
+  const params = [name, file].map((arvo) => arvo ?? null);
   const rows = await promisePool.execute(sql, params);
 
   if (rows[0].affectedRows === 0) return false;
@@ -27,9 +28,9 @@ const addCategory = async (category) => {
 };
 
 const modifyCategory = async (id, category) => {
-  const {name} = category;
-  const sql = `UPDATE categories SET name = ? WHERE categoryId = ?`;
-  const params = [name, id];
+  const {name, file} = category;
+  const sql = `UPDATE categories SET name = ?, SET file = ? WHERE categoryId = ?`;
+  const params = [name, file, id];
 
   const [rows] = await promisePool.execute(sql, params);
 

@@ -30,6 +30,7 @@ const getCategoryById = async (req, res, next) => {
 
 const postCategory = async (req, res, next) => {
   try {
+    console.log('postCategory', req.body);
     const result = await addCategory(req.body);
     if (result.category_id) {
       res.status(201).json({message: 'New category added.', result});
