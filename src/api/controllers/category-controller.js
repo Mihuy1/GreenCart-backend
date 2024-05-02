@@ -46,7 +46,8 @@ const putCategory = async (req, res, next) => {
   try {
     const id = req.params.id;
     const category = req.body;
-    const result = await modifyCategory(id, category);
+    const file = req.file;
+    const result = await modifyCategory(id, category, file);
     if (result) {
       res.json(result);
     } else {

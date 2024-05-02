@@ -27,10 +27,10 @@ const addCategory = async (category, file) => {
   return {category_id: rows[0].insertId};
 };
 
-const modifyCategory = async (id, category) => {
+const modifyCategory = async (id, category, file) => {
   const {name, file} = category;
   const sql = `UPDATE categories SET name = ?, SET file = ? WHERE categoryId = ?`;
-  const params = [name, file, id];
+  const params = [name, file.filename, id];
 
   const [rows] = await promisePool.execute(sql, params);
 
