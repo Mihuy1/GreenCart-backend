@@ -15,11 +15,11 @@ const findCategoryById = async (id) => {
   return rows;
 };
 
-const addCategory = async (category) => {
-  const {name, file} = category;
+const addCategory = async (category, file) => {
+  const {name} = category;
   console.log('addCategory', name, file);
   const sql = `INSERT INTO categories (name, file) VALUES (?, ?)`;
-  const params = [name, file].map((arvo) => arvo ?? null);
+  const params = [name, file.filename].map((arvo) => arvo ?? null);
   const rows = await promisePool.execute(sql, params);
 
   if (rows[0].affectedRows === 0) return false;

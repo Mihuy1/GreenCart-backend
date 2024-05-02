@@ -58,7 +58,7 @@ const upload = multer({
 categoryRouter
   .route('/')
   .get(getCategory)
-  .post(/*authenticationToken, isAdmin,*/ upload.single('file'), postCategory);
+  .post(authenticationToken, isAdmin, upload.single('file'), postCategory);
 categoryRouter
   .route('/:id')
   .get(getCategoryById)
