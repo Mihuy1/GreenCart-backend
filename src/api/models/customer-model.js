@@ -31,6 +31,7 @@ const addCustomer = async (user) => {
 };
 
 const modifyCustomer = async (id, user) => {
+  console.log('modifyCustomer', id, user);
   const {name, address, email, password, role} = user;
   const sql = `UPDATE customers SET name = ?, address = ?, email = ?, password = ?, role = ? WHERE customerId = ?`;
   const params = [name, address, email, password, role, id];

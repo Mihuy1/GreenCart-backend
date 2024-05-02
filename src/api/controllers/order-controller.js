@@ -29,7 +29,7 @@ const getOrderById = async (req, res, next) => {
 
 const postOrder = async (req, res, next) => {
   try {
-    console.log('Received request body:', req.body); // Log the received request body
+    console.log('Received request body postOrder:', req.body); // Log the received request body
     const result = await addOrder(req.body);
     if (result.orderId) {
       res.status(201);

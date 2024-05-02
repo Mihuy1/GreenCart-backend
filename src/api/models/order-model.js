@@ -15,14 +15,12 @@ const findOrderById = async (id) => {
 };
 
 const addOrder = async (order) => {
-  console.log('Received order:', order); // Log the received order object
-  const {customerId, orderDate, price} = order; // Use correct property names
-  console.log('Customer ID:', customerId); // Log the customer ID
-  console.log('Order Date:', orderDate); // Log the order date
-  console.log('Price:', price); // Log the price
-  const sql = `INSERT INTO orders (customerId, orderDate, price)
-    VALUES (?, ?, ?)`;
-  const params = [customerId, orderDate, price].map((arvo) => arvo ?? null);
+  const {customerId, orderDate, price, status_code} = order;
+  const sql = `INSERT INTO orders (customerId, orderDate, price, status_code)
+    VALUES (?, ?, ?, ?)`;
+  const params = [customerId, orderDate, price, status_code].map(
+    (arvo) => arvo ?? null
+  );
   const [rows] = await promisePool.execute(sql, params);
   console.log('rows', rows);
 
