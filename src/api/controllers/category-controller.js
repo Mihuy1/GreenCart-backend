@@ -46,7 +46,7 @@ const putCategory = async (req, res, next) => {
   try {
     const id = req.params.id;
     const category = req.body;
-    updatedCategory = req.body;
+    const updatedCategory = req.body;
 
     // If a file was uploaded, add its path to the updatedFood object
     if (req.file) {
