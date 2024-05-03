@@ -27,25 +27,10 @@ const addCategory = async (category, file) => {
   return {category_id: rows[0].insertId};
 };
 
-const modifyCategory = async (category, id) => {
-  const sql = promisePool.format(
-    `UPDATE categories SET ? WHERE categoryId = ?`,
-    [category, id]
-  );
-
-  console.log('Modify Category', category, id);
-
-  const rows = await promisePool.execute(sql);
-  console.log('rows', rows);
-
-  if (rows[0].affectedRows === 0) return false;
-
-  return {message: 'success'};
-};
-
-/*const modifyCategory = async (id, category) => {
-  const sql = `UPDATE categories SET ? WHERE categoryId = ?`;
-  const params = [category, id];
+const modifyCategory = async (id, category, file) => {
+  const {name} = category;
+  const sql = `UPDATE categories SET name = ?, file = ? WHERE categoryId = ?`;
+  const params = [name, file.filename, id];
 
   const [rows] = await promisePool.execute(sql, params);
 
@@ -54,7 +39,7 @@ const modifyCategory = async (category, id) => {
   }
 
   return {message: 'successfully modified category'};
-};*/
+};
 
 const removeCategory = async (id) => {
   const sql = promisePool.format(
