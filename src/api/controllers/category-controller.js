@@ -46,8 +46,14 @@ const putCategory = async (req, res, next) => {
   try {
     const id = req.params.id;
     const category = req.body;
-    const file = req.file;
-    const result = await modifyCategory(id, category, file);
+    updatedCategory = req.body;
+
+    // If a file was uploaded, add its path to the updatedFood object
+    if (req.file) {
+      updatedCategory.file = req.file.filename;
+    }
+
+    const result = await modifyCategory(id, category);
     if (result) {
       res.json(result);
     } else {
