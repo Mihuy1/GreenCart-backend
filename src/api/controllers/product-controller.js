@@ -71,31 +71,6 @@ const putProduct = async (req, res, next) => {
   }
 };
 
-/*const putProduct = async (req, res, next) => {
-  try {
-    console.log('putProduct', req.body);
-    console.log('putProduct req', req);
-    console.log('putProduct file', req.file);
-    const productId = req.params.id;
-    const updatedFood = req.body;
-
-    // If a file was uploaded, add its path to the updatedFood object
-    if (req.file) {
-      updatedFood.imagePath = req.file.path;
-    }
-
-    const result = await modifyProduct(updatedFood, productId);
-
-    if (result) {
-      res.status(201).json(result);
-    } else {
-      res.sendStatus(404);
-    }
-  } catch (error) {
-    next(error);
-  }
-};*/
-
 const deleteProduct = async (req, res, next) => {
   try {
     const productId = req.params.id;
