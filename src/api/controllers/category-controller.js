@@ -42,22 +42,6 @@ const postCategory = async (req, res, next) => {
   }
 };
 
-/*const putCategory = async (req, res, next) => {
-  try {
-    const id = req.params.id;
-    const category = req.body;
-    const file = req.file;
-    const result = await modifyCategory(id, category, file);
-    if (result) {
-      res.json(result);
-    } else {
-      res.sendStatus(404);
-    }
-  } catch (error) {
-    next(error);
-  }
-};*/
-
 const putCategory = async (req, res, next) => {
   try {
     const id = req.params.id;
