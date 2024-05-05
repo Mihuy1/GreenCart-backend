@@ -11,12 +11,12 @@ const postLogin = async (req, res, next) => {
     console.log('postLogin', req.body);
     const customer = await getCustomerByName(req.body.name);
     if (!customer) {
-      res.sendStatus(401).json({message: 'Invalid username or password.'});
+      res.status(401).json({message: 'Invalid username or password.'});
       return;
     }
 
     if (!bcrypt.compareSync(req.body.password, customer.password)) {
-      res.sendStatus(401).json({message: 'Invalid username or password.'});
+      res.status(401).json({message: 'Invalid username or password.'});
       return;
     }
 
