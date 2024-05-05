@@ -16,7 +16,7 @@ const postLogin = async (req, res, next) => {
     }
 
     if (!bcrypt.compareSync(req.body.password, customer.password)) {
-      res.sendStatus(401);
+      res.sendStatus(401).json({message: 'Invalid username or password.'});
       return;
     }
 
