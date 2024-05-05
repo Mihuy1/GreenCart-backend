@@ -8,7 +8,6 @@ import jwt from 'jsonwebtoken';
 
 const postLogin = async (req, res, next) => {
   try {
-    console.log('postLogin', req.body);
     const customer = await getCustomerByName(req.body.name);
     if (!customer) {
       res.status(401).json({message: 'Invalid username or password.'});
@@ -81,8 +80,6 @@ const register = async (req, res, next) => {
 
 const getMe = async (req, res, next) => {
   try {
-    console.log('getMe', res.locals.customer);
-
     if (res.locals.customer) {
       res.json({message: 'token ok', customer: res.locals.customer});
     } else {
