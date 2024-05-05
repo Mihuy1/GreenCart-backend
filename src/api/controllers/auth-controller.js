@@ -11,7 +11,7 @@ const postLogin = async (req, res, next) => {
     console.log('postLogin', req.body);
     const customer = await getCustomerByName(req.body.name);
     if (!customer) {
-      res.sendStatus(404);
+      res.sendStatus(401).json({message: 'Invalid username or password.'});
       return;
     }
 
