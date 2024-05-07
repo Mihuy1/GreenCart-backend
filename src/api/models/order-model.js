@@ -41,6 +41,23 @@ const modifyOrder = async (id, order) => {
   return {message: 'success'};
 };
 
+const updateOrderStatus = async (orderId, newStatus) => {
+  try {
+    const sql = 'UPDATE orders SET status_code = ? WHERE orderId = ?';
+    const params = [newStatus, orderId];
+
+    const [rows] = await promisePool.execute(sql, params);
+
+    if (rows.affectedRows === 0) {
+      return false;
+    }
+
+    return {message: 'Order status updated successfully'};
+  } catch (error) {
+    throw error;
+  }
+};
+
 const removeOrder = async (id) => {
   const sql = promisePool.format(`DELETE FROM orders WHERE orderId = ?`, [id]);
   const [rows] = await promisePool.execute(sql);
@@ -52,4 +69,11 @@ const removeOrder = async (id) => {
   return {message: 'success'};
 };
 
-export {listAllOrders, findOrderById, addOrder, modifyOrder, removeOrder};
+export {
+  listAllOrders,
+  findOrderById,
+  addOrder,
+  modifyOrder,
+  removeOrder,
+  updateOrderStatus,
+};

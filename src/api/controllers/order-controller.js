@@ -6,6 +6,8 @@ import {
   removeOrder,
 } from '../models/order-model.js';
 
+import {startOrderTimer} from '../services/order-logic.js';
+
 const getOrders = async (req, res, next) => {
   try {
     res.json(await listAllOrders());
@@ -34,6 +36,7 @@ const postOrder = async (req, res, next) => {
     if (result.orderId) {
       res.status(201);
       res.json({message: 'New order added', result});
+      startOrderTimer(result.orderId);
     } else {
       res.sendStatus(400);
     }
