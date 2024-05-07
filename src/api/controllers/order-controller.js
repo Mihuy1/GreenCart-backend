@@ -44,6 +44,7 @@ const postOrder = async (req, res, next) => {
 
 const putOrder = async (req, res, next) => {
   try {
+    console.log('Received request body putOrder:', req.body); // Log the received request body
     const result = await modifyOrder(req.params.id, req.body);
     if (result) {
       res.status(200);
