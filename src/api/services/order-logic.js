@@ -1,7 +1,5 @@
-// Import the necessary modules
 import {updateOrderStatus} from '../models/order-model.js';
 
-// Function to start the timer for order pickup
 function startOrderTimer(orderId) {
   const pickupTime = getRandomTime(10000, 60000); // Randomize pickup time between 10s - 1m
   console.log(`Order pickup timer set for ${pickupTime / 1000} seconds`);
@@ -17,14 +15,12 @@ function startOrderTimer(orderId) {
       `Order completion timer set for ${completionTime / 1000} seconds`
     );
     setTimeout(() => {
-      // Update the order status to indicate order completion
       console.log(`Order ${orderId} completed`);
       updateOrderStatus(orderId, 2); // Assuming 2 represents the "completed" status
     }, completionTime);
   }, pickupTime);
 }
 
-// Helper function to generate a random time within a given range
 function getRandomTime(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
