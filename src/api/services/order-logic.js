@@ -1,5 +1,5 @@
 // Import the necessary modules
-import {updateOrderStatus} from '../models/order-model';
+import {updateOrderStatus} from '../models/order-model.js';
 
 // Function to start the timer for order pickup
 function startOrderTimer(orderId) {
