@@ -29,7 +29,4 @@ function getRandomTime(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-// Example usage
-const orderId = '21';
-console.log(`Starting order timer for order ${orderId}`);
-startOrderTimer(orderId);
+export {startOrderTimer};
