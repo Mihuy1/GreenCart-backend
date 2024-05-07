@@ -30,9 +30,9 @@ const addOrder = async (order) => {
 };
 
 const modifyOrder = async (id, order) => {
-  const {customer_id, orderDate, price} = order;
-  const sql = `UPDATE orders SET customerId = ?, orderDate = ?, price = ? WHERE orderId = ?`;
-  const params = [customer_id, orderDate, price, id];
+  const {customer_id, orderDate, price, status_code} = order;
+  const sql = `UPDATE orders SET customerId = ?, orderDate = ?, price = ?, status_code = ? WHERE orderId = ?`;
+  const params = [customer_id, orderDate, price, status_code, id];
   const [rows] = await promisePool.execute(sql, params);
   if (rows.affectedRows === 0) {
     return false;
