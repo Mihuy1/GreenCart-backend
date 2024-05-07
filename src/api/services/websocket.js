@@ -1,18 +1,18 @@
-import WebSocket from 'ws';
+import {WebSocketServer} from 'ws';
 
-const wss = new WebSocket.Server({port: 8080});
+const server = new WebSocketServer({port: 8080});
 
-wss.on('connection', (ws) => {
-  console.log('Client connected');
+server.on('connection', function connection(websocket) {
+  console.info('Client connected');
+  const interval = setInterval(() => {
+    websocket.send('hello world');
+  }, 1000);
 
-  // Simulate order status updates
-  setInterval(() => {
-    const orderId = Math.floor(Math.random() * 100) + 1;
-    const status = Math.random() > 0.5 ? 'picked up' : 'completed';
-    ws.send(JSON.stringify({orderId, status}));
-  }, 5000);
-
-  ws.on('close', () => {
+  websocket.on('close', () => {
     console.log('Client disconnected');
   });
+
+  websocket.onerror = function () {
+    console.log('Some Error occurred');
+  };
 });
