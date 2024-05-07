@@ -4,6 +4,7 @@ import {
   addOrder,
   modifyOrder,
   removeOrder,
+  updateOrderStatus,
 } from '../models/order-model.js';
 
 import {startOrderTimer} from '../services/order-logic.js';
@@ -60,6 +61,24 @@ const putOrder = async (req, res, next) => {
   }
 };
 
+const updateOrderStatusController = async (req, res, next) => {
+  try {
+    const orderId = req.params.id;
+    const newStatus = req.body.status_code;
+
+    const result = await updateOrderStatus(orderId, newStatus);
+
+    if (result) {
+      res.status(200);
+      res.json(result);
+    } else {
+      res.status(404);
+    }
+  } catch (error) {
+    next(error);
+  }
+};
+
 const deleteOrder = async (req, res, next) => {
   try {
     const orderId = req.params.id;
@@ -77,4 +96,11 @@ const deleteOrder = async (req, res, next) => {
   }
 };
 
-export {getOrders, getOrderById, postOrder, putOrder, deleteOrder};
+export {
+  getOrders,
+  getOrderById,
+  postOrder,
+  putOrder,
+  deleteOrder,
+  updateOrderStatusController,
+};

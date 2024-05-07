@@ -5,6 +5,7 @@ import {
   postOrder,
   putOrder,
   deleteOrder,
+  updateOrderStatusController,
 } from '../controllers/order-controller.js';
 import {authenticationToken, isAdmin} from '../../middlewares.js';
 
@@ -16,5 +17,10 @@ orderRouter
   .get(getOrderById)
   .put(putOrder)
   .delete(authenticationToken, isAdmin, deleteOrder);
+
+// Add route for updating order status
+orderRouter
+  .route('/:id/status')
+  .put(authenticationToken, updateOrderStatusController);
 
 export default orderRouter;
