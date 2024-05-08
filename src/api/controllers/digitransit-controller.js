@@ -1,4 +1,5 @@
 import axios from 'axios';
+import dotenv from 'dotenv/config';
 
 const fetchDisruptions = async () => {
   try {
@@ -20,7 +21,7 @@ const fetchDisruptions = async () => {
       'https://api.digitransit.fi/routing/v1/routers/hsl/index/graphql';
     const headers = {
       'Content-Type': 'application/graphql',
-      'digitransit-subscription-key': process.env.DIGITRANSIT_API_KEY,
+      'digitransit-subscription-key': process.env.DIGITRANSIT_SUBSCRIPTION_KEY,
     };
 
     const response = await axios.post(graphqlEndpoint, query, {headers});
