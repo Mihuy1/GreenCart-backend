@@ -37,7 +37,7 @@ const postOrder = async (req, res, next) => {
     if (result.orderId) {
       res.status(201);
       res.json({message: 'New order added', result});
-      startOrderTimer(result.orderId);
+      //startOrderTimer(result.orderId);
     } else {
       res.sendStatus(400);
     }
