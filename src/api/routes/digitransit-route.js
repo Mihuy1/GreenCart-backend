@@ -34,6 +34,8 @@ router.post('/proxy', async (req, res) => {
       {
         headers: {
           'Content-Type': 'application/json',
+          'digitransit-subscription-key':
+            process.env.DIGITRANSIT_SUBSCRIPTION_KEY,
         },
       }
     );
