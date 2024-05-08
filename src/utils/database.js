@@ -6,16 +6,10 @@ const pool = mysql.createPool({
   user: process.env.DB_USER,
   password: process.env.DB_PASSWORD,
   database: process.env.DB_NAME,
-  digitransitsubscriptionkey: process.env.DIGITRANSIT_SUBSCRIPTION_KEY,
   waitForConnections: true,
   connectionLimit: 10,
   queueLimit: 0,
 });
 const promisePool = pool.promise();
-
-console.log(
-  'digitransitsubscriptionkey',
-  process.env.DIGITRANSIT_SUBSCRIPTION_KEY
-);
 
 export default promisePool;
