@@ -3,14 +3,37 @@ import axios from 'axios';
 
 const router = express.Router();
 
-router.get('/proxy', async (req, res) => {
+router.post('/proxy', async (req, res) => {
   try {
-    const response = await axios.get(
-      'https://api.digitransit.fi/routing-data/v3/finland',
+    const response = await axios.post(
+      'https://api.digitransit.fi/routing/v1/routers/hsl/index/graphql',
+      {
+        query: `
+          {
+            alerts(feeds: ["HSL"]) {
+              alertDescriptionText
+              alertDescriptionTextTranslations {
+                text
+                language
+              }
+              route {
+                gtfsId
+              }
+              trip {
+                gtfsId
+              }
+              stop {
+                gtfsId
+              }
+              effectiveStartDate
+              effectiveEndDate
+            }
+          }
+        `,
+      },
       {
         headers: {
-          'Cache-Control': 'no-cache',
-          'digitransit-subscription-key': '5f623da3094e44ef9e2b2a80d9f6bdfa',
+          'Content-Type': 'application/json',
         },
       }
     );

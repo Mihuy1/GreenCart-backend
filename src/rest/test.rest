@@ -263,3 +263,9 @@ Content-Type: application/json
 ### Delete a review
 DELETE http://localhost:3000/api/v1/reviews/2
 
+### test
+GET https://api.digitransit.fi/routing-data/v3/finland HTTP/1.1
+
+Cache-Control: no-cache
+digitransit-subscription-key: 5f623da3094e44ef9e2b2a80d9f6bdfa
+
