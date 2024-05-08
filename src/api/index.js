@@ -8,7 +8,7 @@ import categoryRouter from './routes/category-router.js';
 import reviewRouter from './routes/review-router.js';
 import orderItemRouter from './routes/orderItem-router.js';
 import productsOrdersRouter from './routes/productsOrders-route.js';
-import digitransitRouter from './routes/digitransit-route.js';
+import digitransitRouter from './routes/digitransit-router.js';
 
 const router = express.Router();
 
@@ -22,6 +22,6 @@ router.use('/categories', categoryRouter);
 router.use('/reviews', reviewRouter);
 router.use('/orderitems', orderItemRouter);
 router.use('/productsorders', productsOrdersRouter);
-router.use('/digitransit', digitransitRouter);
+app.use('/digitransit', digitransitRouter); // Use the digitransit router
 
 export default router;
