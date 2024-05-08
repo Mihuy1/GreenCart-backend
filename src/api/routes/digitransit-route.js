@@ -1,6 +1,8 @@
-const express = require('express');
+import express from 'express';
+import axios from 'axios';
+import axios from 'axios';
+
 const router = express.Router();
-const axios = require('axios');
 
 router.get('/proxy', async (req, res) => {
   try {
@@ -16,7 +18,7 @@ router.get('/proxy', async (req, res) => {
     res.send(response.data);
   } catch (error) {
     console.error(error);
-    res.status(500).send('Error occurred while fetching data');
+    res.status(500).send('Error occurred while fetching data.');
   }
 });
 
