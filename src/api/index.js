@@ -22,6 +22,6 @@ router.use('/categories', categoryRouter);
 router.use('/reviews', reviewRouter);
 router.use('/orderitems', orderItemRouter);
 router.use('/productsorders', productsOrdersRouter);
-app.use('/digitransit', digitransitRouter); // Use the digitransit router
+router.use('/digitransit', digitransitRouter);
 
 export default router;
