@@ -14,7 +14,7 @@ app.use('/uploads', express.static('uploads'));
 app.use('/api/v1', api);
 
 // Serve API documentation from the 'apidoc' directory at the '/app' path
-app.use('/app', express.static(path.join(__dirname, 'apidoc')));
+app.use('/app/apidoc', express.static(path.join(path.resolve(), 'apidoc')));
 
 app.get('/', (req, res) => {
   res.send('Welcome to my API!');
