@@ -13,16 +13,15 @@ app.use(express.urlencoded({extended: true}));
 app.use('/uploads', express.static('uploads'));
 app.use('/api/v1', api);
 
-// Serve API documentation from the 'apidoc' directory at the '/app' path
+// Serve API documentation in root apidocs folder
 const apidocPath = path.join(path.resolve(), '../apidoc');
 console.log(`Serving static files from: ${apidocPath}`);
-app.use('/app/apidoc', express.static(apidocPath));
+app.use('/api/v1/apidoc', express.static(apidocPath));
 
 app.get('/', (req, res) => {
   res.send('Welcome to my API!');
 });
 
-// In your app.js or middlewares.js
 app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(500).json({message: 'An unexpected error occurred'});
