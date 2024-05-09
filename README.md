@@ -1,2 +1,1 @@
-### Documentation
-Link: [http://10.120.32.54/api/v1/apidoc/].
+[Documentation](http://10.120.32.54/api/v1/apidoc/)
