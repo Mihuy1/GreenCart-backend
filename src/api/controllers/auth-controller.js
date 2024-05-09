@@ -5,7 +5,7 @@ import {
   getCustomerByEmail,
 } from '../models/customer-model.js';
 
-import {getCustomerById} from '../models/customer-model.js';
+import {findCustomerById} from '../models/customer-model.js';
 
 import jwt from 'jsonwebtoken';
 
@@ -115,7 +115,7 @@ const register = async (req, res, next) => {
  */
 const getMe = async (req, res, next) => {
   try {
-    const user = await getCustomerById(res.locals.customer.id);
+    const user = await findCustomerById(res.locals.customer.id);
     if (user) {
       res.json({message: 'token ok', customer: user});
     } else {
