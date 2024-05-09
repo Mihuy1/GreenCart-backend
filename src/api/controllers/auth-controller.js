@@ -115,6 +115,7 @@ const register = async (req, res, next) => {
  */
 const getMe = async (req, res, next) => {
   try {
+    console.log('res.locals:', res.locals);
     const user = await findCustomerById(res.locals.customer.id);
     if (user) {
       res.json({message: 'token ok', customer: user});
