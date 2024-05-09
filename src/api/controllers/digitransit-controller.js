@@ -1,3 +1,12 @@
+/**
+ * @api {post} /disruptions Fetch disruptions
+ * @apiName FetchDisruptions
+ * @apiGroup Disruption
+ * @apiSuccess {Object[]} disruptions List of disruptions.
+ * @apiError {Object} 400 Some parameters may contain invalid values.
+ * @apiError 404 Disruptions not found.
+ */
+
 import axios from 'axios';
 import dotenv from 'dotenv/config';
 

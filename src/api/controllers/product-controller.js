@@ -6,6 +6,14 @@ import {
   listAllProducts,
 } from '../models/product-model.js';
 
+/**
+ * @api {get} /products Get all products
+ * @apiName GetProducts
+ * @apiGroup Product
+ * @apiSuccess {Object[]} products List of products.
+ * @apiError {Object} 400 Some parameters may contain invalid values.
+ * @apiError 404 Products not found.
+ */
 const getProduct = async (req, res, next) => {
   try {
     res.json(await listAllProducts());
@@ -14,6 +22,15 @@ const getProduct = async (req, res, next) => {
   }
 };
 
+/**
+ * @api {get} /products/:id Get product by ID
+ * @apiName GetProductById
+ * @apiGroup Product
+ * @apiParam {Number} id Product's unique ID.
+ * @apiSuccess {Object} product Product's data.
+ * @apiError {Object} 400 Some parameters may contain invalid values.
+ * @apiError 404 Product not found.
+ */
 const getProductById = async (req, res, error) => {
   try {
     const product = await findProductById(req.params.id);
@@ -27,6 +44,15 @@ const getProductById = async (req, res, error) => {
   }
 };
 
+/**
+ * @api {post} /products Add a new product
+ * @apiName PostProduct
+ * @apiGroup Product
+ * @apiParam {String} product Product data.
+ * @apiSuccess {Object} product Product's data.
+ * @apiError {Object} 400 Some parameters may contain invalid values.
+ * @apiError 404 Product not found.
+ */
 const postProduct = async (req, res, next) => {
   try {
     console.log('postProduct', req.body);
@@ -44,6 +70,16 @@ const postProduct = async (req, res, next) => {
   }
 };
 
+/**
+ * @api {put} /products/:id Update a product
+ * @apiName PutProduct
+ * @apiGroup Product
+ * @apiParam {Number} id Product's unique ID.
+ * @apiParam {String} product Product data.
+ * @apiSuccess {Object} product Product's data.
+ * @apiError {Object} 400 Some parameters may contain invalid values.
+ * @apiError 404 Product not found.
+ */
 const putProduct = async (req, res, next) => {
   try {
     console.log('putProduct', req.body);
@@ -71,6 +107,15 @@ const putProduct = async (req, res, next) => {
   }
 };
 
+/**
+ * @api {delete} /products/:id Delete a product
+ * @apiName DeleteProduct
+ * @apiGroup Product
+ * @apiParam {Number} id Product's unique ID.
+ * @apiSuccess {Object} product Product's data.
+ * @apiError {Object} 400 Some parameters may contain invalid values.
+ * @apiError 404 Product not found.
+ */
 const deleteProduct = async (req, res, next) => {
   try {
     const productId = req.params.id;

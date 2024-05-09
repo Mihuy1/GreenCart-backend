@@ -7,6 +7,14 @@ import {
   removeShoppingCart,
 } from '../models/shoppingCart-model.js';
 
+/**
+ * @api {get} /shoppingCarts Get all shopping carts
+ * @apiName GetShoppingCarts
+ * @apiGroup ShoppingCart
+ * @apiSuccess {Object[]} shoppingCarts List of shopping carts.
+ * @apiError {Object} 400 Some parameters may contain invalid values.
+ * @apiError 404 Shopping carts not found.
+ */
 const getShoppingCart = async (req, res, next) => {
   try {
     const shoppingCarts = await listAllShoppingCart();
@@ -16,6 +24,15 @@ const getShoppingCart = async (req, res, next) => {
   }
 };
 
+/**
+ * @api {get} /shoppingCarts/:id Get shopping cart by ID
+ * @apiName GetShoppingCartById
+ * @apiGroup ShoppingCart
+ * @apiParam {Number} id ShoppingCart's unique ID.
+ * @apiSuccess {Object} shoppingCart ShoppingCart's data.
+ * @apiError {Object} 400 Some parameters may contain invalid values.
+ * @apiError 404 ShoppingCart not found.
+ */
 const getShoppingCartById = async (req, res, next) => {
   try {
     const shoppingCart = await findShoppingCartById(req.params.id);
@@ -29,6 +46,15 @@ const getShoppingCartById = async (req, res, next) => {
   }
 };
 
+/**
+ * @api {get} /shoppingCarts/:id/info Get shopping cart info by ID
+ * @apiName GetShoppingCartInfo
+ * @apiGroup ShoppingCart
+ * @apiParam {Number} id ShoppingCart's unique ID.
+ * @apiSuccess {Object} shoppingCart ShoppingCart's data.
+ * @apiError {Object} 400 Some parameters may contain invalid values.
+ * @apiError 404 ShoppingCart not found.
+ */
 const getShoppingCartInfo = async (req, res, next) => {
   try {
     const shoppingCart = await findShoppingCartInfo(req.params.id);
@@ -42,6 +68,15 @@ const getShoppingCartInfo = async (req, res, next) => {
   }
 };
 
+/**
+ * @api {post} /shoppingCarts Add a new shopping cart
+ * @apiName PostShoppingCart
+ * @apiGroup ShoppingCart
+ * @apiParam {String} shoppingCart ShoppingCart data.
+ * @apiSuccess {Object} shoppingCart ShoppingCart's data.
+ * @apiError {Object} 400 Some parameters may contain invalid values.
+ * @apiError 404 ShoppingCart not found.
+ */
 const postShoppingCart = async (req, res, next) => {
   try {
     const result = await addShoppingCart(req.body);
@@ -55,6 +90,16 @@ const postShoppingCart = async (req, res, next) => {
   }
 };
 
+/**
+ * @api {put} /shoppingCarts/:id Update a shopping cart
+ * @apiName PutShoppingCart
+ * @apiGroup ShoppingCart
+ * @apiParam {Number} id ShoppingCart's unique ID.
+ * @apiParam {String} shoppingCart ShoppingCart data.
+ * @apiSuccess {Object} shoppingCart ShoppingCart's data.
+ * @apiError {Object} 400 Some parameters may contain invalid values.
+ * @apiError 404 ShoppingCart not found.
+ */
 const putShoppingCart = async (req, res, next) => {
   try {
     const result = await modifyShoppingCart(req.params.id, req.body);
@@ -68,6 +113,15 @@ const putShoppingCart = async (req, res, next) => {
   }
 };
 
+/**
+ * @api {delete} /shoppingCarts/:id Delete a shopping cart
+ * @apiName DeleteShoppingCart
+ * @apiGroup ShoppingCart
+ * @apiParam {Number} id ShoppingCart's unique ID.
+ * @apiSuccess {Object} shoppingCart ShoppingCart's data.
+ * @apiError {Object} 400 Some parameters may contain invalid values.
+ * @apiError 404 ShoppingCart not found.
+ */
 const deleteShoppingCart = async (req, res, next) => {
   try {
     const result = await removeShoppingCart(req.params.id);

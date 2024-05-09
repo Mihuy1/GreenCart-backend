@@ -6,6 +6,16 @@ import {
 } from '../models/customer-model.js';
 import jwt from 'jsonwebtoken';
 
+/**
+ * @api {post} /auth/login Login
+ * @apiName PostLogin
+ * @apiGroup Auth
+ * @apiParam {String} username User's username.
+ * @apiParam {String} password User's password.
+ * @apiSuccess {String} token User's authentication token.
+ * @apiError {Object} 400 Some parameters may contain invalid values.
+ * @apiError 404 User not found.
+ */
 const postLogin = async (req, res, next) => {
   try {
     const customer = await getCustomerByName(req.body.name);
@@ -33,6 +43,19 @@ const postLogin = async (req, res, next) => {
     next(error);
   }
 };
+
+/**
+ * @api {post} /auth/register Register a new user
+ * @apiName Register
+ * @apiGroup Auth
+ * @apiParam {String} name User's name.
+ * @apiParam {String} email User's email.
+ * @apiParam {String} address User's address.
+ * @apiParam {String} password User's password.
+ * @apiSuccess {Object} user User's data.
+ * @apiError {Object} 400 Some parameters may contain invalid values.
+ * @apiError 404 User not found.
+ */
 
 const register = async (req, res, next) => {
   try {
@@ -78,6 +101,15 @@ const register = async (req, res, next) => {
   }
 };
 
+/**
+ * @api {get} /auth/me Get current user
+ * @apiName GetMe
+ * @apiGroup Auth
+ * @apiPermission user
+ * @apiSuccess {Object} user User's data.
+ * @apiError {Object} 400 Some parameters may contain invalid values.
+ * @apiError 404 User not found.
+ */
 const getMe = async (req, res, next) => {
   try {
     if (res.locals.customer) {

@@ -6,6 +6,14 @@ import {
   removeCategory,
 } from '../models/category-model.js';
 
+/**
+ * @api {get} /categories Get all categories
+ * @apiName GetCategories
+ * @apiGroup Category
+ * @apiSuccess {Object[]} categories List of categories.
+ * @apiError {Object} 400 Some parameters may contain invalid values.
+ * @apiError 404 Categories not found.
+ */
 const getCategory = async (req, res, next) => {
   try {
     const data = await listAllCategories();
@@ -15,6 +23,15 @@ const getCategory = async (req, res, next) => {
   }
 };
 
+/**
+ * @api {get} /categories/:id Get category by ID
+ * @apiName GetCategoryById
+ * @apiGroup Category
+ * @apiParam {Number} id Category's unique ID.
+ * @apiSuccess {Object} category Category's data.
+ * @apiError {Object} 400 Some parameters may contain invalid values.
+ * @apiError 404 Category not found.
+ */
 const getCategoryById = async (req, res, next) => {
   try {
     const category = await findCategoryById(req.params.id);
@@ -28,6 +45,15 @@ const getCategoryById = async (req, res, next) => {
   }
 };
 
+/**
+ * @api {post} /categories Add a new category
+ * @apiName PostCategory
+ * @apiGroup Category
+ * @apiParam {String} name Category's name.
+ * @apiSuccess {Object} category Category's data.
+ * @apiError {Object} 400 Some parameters may contain invalid values.
+ * @apiError 404 Category not found.
+ */
 const postCategory = async (req, res, next) => {
   try {
     console.log('postCategory', req.body, req.file);
@@ -42,6 +68,16 @@ const postCategory = async (req, res, next) => {
   }
 };
 
+/**
+ * @api {put} /categories/:id Update a category
+ * @apiName PutCategory
+ * @apiGroup Category
+ * @apiParam {Number} id Category's unique ID.
+ * @apiParam {String} name Category's name.
+ * @apiSuccess {Object} category Category's data.
+ * @apiError {Object} 400 Some parameters may contain invalid values.
+ * @apiError 404 Category not found.
+ */
 const putCategory = async (req, res, next) => {
   try {
     const id = req.params.id;
@@ -58,6 +94,15 @@ const putCategory = async (req, res, next) => {
   }
 };
 
+/**
+ * @api {delete} /categories/:id Delete a category
+ * @apiName DeleteCategory
+ * @apiGroup Category
+ * @apiParam {Number} id Category's unique ID.
+ * @apiSuccess {Object} category Category's data.
+ * @apiError {Object} 400 Some parameters may contain invalid values.
+ * @apiError 404 Category not found.
+ */
 const deleteCategory = async (req, res, next) => {
   try {
     const id = req.params.id;

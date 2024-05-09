@@ -8,6 +8,14 @@ import {
 
 import bcrypt from 'bcrypt';
 
+/**
+ * @api {get} /customers Get all customers
+ * @apiName GetCustomers
+ * @apiGroup Customer
+ * @apiSuccess {Object[]} customers List of customers.
+ * @apiError {Object} 400 Some parameters may contain invalid values.
+ * @apiError 404 Customers not found.
+ */
 const getCustomers = async (req, res, next) => {
   try {
     res.json(await listAllcustomers());
@@ -16,6 +24,15 @@ const getCustomers = async (req, res, next) => {
   }
 };
 
+/**
+ * @api {get} /customers/:id Get customer by ID
+ * @apiName GetCustomerById
+ * @apiGroup Customer
+ * @apiParam {Number} id Customer's unique ID.
+ * @apiSuccess {Object} customer Customer's data.
+ * @apiError {Object} 400 Some parameters may contain invalid values.
+ * @apiError 404 Customer not found.
+ */
 const getCustomerById = async (req, res, next) => {
   try {
     const user = await findCustomerById(req.params.id);
@@ -29,6 +46,16 @@ const getCustomerById = async (req, res, next) => {
   }
 };
 
+/**
+ * @api {post} /customers Add a new customer
+ * @apiName PostCustomer
+ * @apiGroup Customer
+ * @apiParam {String} name Customer's name.
+ * @apiParam {String} password Customer's password.
+ * @apiSuccess {Object} customer Customer's data.
+ * @apiError {Object} 400 Some parameters may contain invalid values.
+ * @apiError 404 Customer not found.
+ */
 const postCustomer = async (req, res, next) => {
   try {
     req.body.password = bcrypt.hashSync(req.body.password, 10);
@@ -45,6 +72,17 @@ const postCustomer = async (req, res, next) => {
   }
 };
 
+/**
+ * @api {put} /customers/:id Update a customer
+ * @apiName PutCustomer
+ * @apiGroup Customer
+ * @apiParam {Number} id Customer's unique ID.
+ * @apiParam {String} name Customer's name.
+ * @apiParam {String} password Customer's password.
+ * @apiSuccess {Object} customer Customer's data.
+ * @apiError {Object} 400 Some parameters may contain invalid values.
+ * @apiError 404 Customer not found.
+ */
 const putCustomer = async (req, res, next) => {
   try {
     req.body.password = bcrypt.hashSync(req.body.password, 10);
@@ -61,6 +99,15 @@ const putCustomer = async (req, res, next) => {
   }
 };
 
+/**
+ * @api {delete} /customers/:id Delete a customer
+ * @apiName DeleteCustomer
+ * @apiGroup Customer
+ * @apiParam {Number} id Customer's unique ID.
+ * @apiSuccess {Object} customer Customer's data.
+ * @apiError {Object} 400 Some parameters may contain invalid values.
+ * @apiError 404 Customer not found.
+ */
 const deleteCustomer = async (req, res) => {
   try {
     const userId = req.params.id;
