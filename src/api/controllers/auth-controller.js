@@ -4,6 +4,9 @@ import {
   getCustomerByName,
   getCustomerByEmail,
 } from '../models/customer-model.js';
+
+import {getCustomerById} from '../models/customer-model.js';
+
 import jwt from 'jsonwebtoken';
 
 /**
@@ -112,6 +115,19 @@ const register = async (req, res, next) => {
  */
 const getMe = async (req, res, next) => {
   try {
+    const user = await getCustomerById(res.locals.customer.id);
+    if (user) {
+      res.json({message: 'token ok', customer: user});
+    } else {
+      res.sendStatus(404);
+    }
+  } catch (error) {
+    next(error);
+  }
+};
+
+/*const getMe = async (req, res, next) => {
+  try {
     if (res.locals.customer) {
       res.json({message: 'token ok', customer: res.locals.customer});
     } else {
@@ -120,6 +136,6 @@ const getMe = async (req, res, next) => {
   } catch (error) {
     next(error);
   }
-};
+};*/
 
 export {postLogin, getMe, register};
