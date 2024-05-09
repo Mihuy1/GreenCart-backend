@@ -14,7 +14,7 @@ app.use('/uploads', express.static('uploads'));
 app.use('/api/v1', api);
 
 // Serve API documentation in root apidocs folder
-const apidocPath = path.join(path.resolve(), '../apidoc');
+const apidocPath = path.join(path.resolve(), './apidoc');
 console.log(`Serving static files from: ${apidocPath}`);
 app.use('/api/v1/apidoc', express.static(apidocPath));
 
